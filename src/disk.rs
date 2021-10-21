@@ -19,7 +19,9 @@ impl PageId {
 
 impl DiskManager {
     pub fn new(heap_file: File) -> io::Result<Self> {
+        // ヒープファイルのファイルサイズを取得している
         let heap_file_size = heap_file.metadata()?.len();
+        // TODO ここがよくわからない
         let next_page_id = heap_file_size / PAGE_SIZE as u64;
         Ok(Self {
             heap_file,
@@ -46,6 +48,7 @@ impl DiskManager {
     // ページのデータを読み出す
     pub fn read_page_data(&mut self, page_id: PageId, data: &mut [u8]) -> io::Result<()> {
         let offset = PAGE_SIZE as u64 * page_id.to_u64();
+        // SeekFrom::Start(offest)はファイルの先頭から数えてoffsetバイト目って意味
         self.heap_file.seek(SeekFrom::Start(offset))?;
         self.heap_file.read_exact(data)
     }

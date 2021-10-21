@@ -6,3 +6,5 @@
 ### New Typeパターン
 説明を追加する。新たに構造体を定義して、その型の値の演算を間違って行ってしまうのを防ぐ方法(?)
 
+## 参考・引用
+- [relly](https://github.com/KOBA789/relly/tree/wdb/src)
